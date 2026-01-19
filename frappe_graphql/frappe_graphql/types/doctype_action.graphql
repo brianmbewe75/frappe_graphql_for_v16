@@ -1,0 +1,27 @@
+type DocTypeAction implements BaseDocType {
+  doctype: String
+  name: String
+  owner: User!
+  creation: String
+  modified: String
+  modified_by: User!
+  parent: BaseDocType
+  parentfield: String
+  parenttype: String
+  idx: Int
+  docstatus: Int
+  owner__name: String!
+  modified_by__name: String!
+  parent__name: String
+  label: String!
+  action_type: DocTypeActionActionTypeSelectOptions!
+  action: String!
+  group: String
+  hidden: Int
+  custom: Int
+}
+
+enum DocTypeActionActionTypeSelectOptions {
+  SERVER_ACTION
+  ROUTE
+}

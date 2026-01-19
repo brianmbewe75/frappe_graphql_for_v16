@@ -1,0 +1,26 @@
+type DocTypeLink implements BaseDocType {
+  doctype: String
+  name: String
+  owner: User!
+  creation: String
+  modified: String
+  modified_by: User!
+  parent: BaseDocType
+  parentfield: String
+  parenttype: String
+  idx: Int
+  docstatus: Int
+  owner__name: String!
+  modified_by__name: String!
+  parent__name: String
+  link_doctype: DocType!
+  link_doctype__name: String
+  link_fieldname: String!
+  parent_doctype: DocType
+  parent_doctype__name: String
+  table_fieldname: String
+  group: String
+  hidden: Int
+  is_child_table: Int
+  custom: Int
+}

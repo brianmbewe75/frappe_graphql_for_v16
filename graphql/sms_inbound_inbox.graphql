@@ -1,0 +1,49 @@
+type SMSInboundInbox implements BaseDocType {
+  doctype: String
+  name: String
+  owner: User!
+  creation: String
+  modified: String
+  modified_by: User!
+  docstatus: Int
+  idx: Int
+  owner__name: String!
+  modified_by__name: String!
+  parent__name: String
+  timestamp: String
+  from_number: String
+  to_number: String
+  language: String
+  body: String
+  normalized_body: String
+  routing_status: String
+  matched_trigger: String
+  provider_payload: String
+}
+
+enum SMSInboundInboxSortField {
+  NAME
+  CREATION
+  MODIFIED
+}
+
+input SMSInboundInboxSortingInput {
+  direction: SortDirection!
+  field: SMSInboundInboxSortField!
+}
+
+type SMSInboundInboxCountableEdge {
+  cursor: String!
+  node: SMSInboundInbox!
+}
+
+type SMSInboundInboxCountableConnection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [SMSInboundInboxCountableEdge!]!
+}
+
+extend type Query {
+  SMSInboundInbox(name: String!): SMSInboundInbox!
+  SMSInboundInboxes(filter: [DBFilterInput], sortBy: SMSInboundInboxSortingInput, before: String, after: String, first: Int, last: Int): SMSInboundInboxCountableConnection!
+}

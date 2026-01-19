@@ -1,0 +1,101 @@
+type PrintJob implements BaseDocType {
+  doctype: String
+  name: String
+  owner: User!
+  creation: String
+  modified: String
+  modified_by: User!
+  docstatus: Int
+  idx: Int
+  owner__name: String!
+  modified_by__name: String!
+  parent__name: String
+  naming_series: String!
+  sales_order: SalesOrder
+  sales_order__name: String
+  quantity: Int
+  sales_order_item: SalesOrderItem
+  sales_order_item__name: String
+  artwork: Artwork
+  artwork__name: String
+  batch_number: String
+  printer_operator: User
+  printer_operator__name: String
+  machine: Workstation
+  machine__name: String
+  start_time: String
+  end_time: String
+  material_usage: [MaterialUsage!]!
+  defect_count: Int
+  s3_job_ticket_pdf: String
+  notes: String
+  amended_from: PrintJob
+  amended_from__name: String
+  product: Item!
+  product__name: String
+  status: PrintJobStatusSelectOptions!
+}
+
+extend type PrintJob {
+  printer: PrinterEquipment
+  printer__name: String
+  production_date: String
+  priority: PrintJobPrioritySelectOptions
+  quantity_produced: Int
+  quantity_rejected: Int
+  actual_cost: Float
+  qc_inspector: User
+  qc_inspector__name: String
+  qc_status: PrintJobQcStatusSelectOptions
+  qc_notes: String
+  qc_date: String
+}
+
+enum PrintJobPrioritySelectOptions {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum PrintJobQcStatusSelectOptions {
+  PENDING
+  PASSED
+  FAILED
+}
+
+enum PrintJobStatusSelectOptions {
+  QUEUED
+  IN_PROGRESS
+  PAUSED
+  COMPLETED
+  QC_FAILED
+}
+
+enum PrintJobSortField {
+  NAME
+  CREATION
+  MODIFIED
+  AMENDED_FROM
+}
+
+input PrintJobSortingInput {
+  direction: SortDirection!
+  field: PrintJobSortField!
+}
+
+type PrintJobCountableEdge {
+  cursor: String!
+  node: PrintJob!
+}
+
+type PrintJobCountableConnection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [PrintJobCountableEdge!]!
+}
+
+extend type Query {
+  PrintJob(name: String!): PrintJob!
+  PrintJobs(filter: [DBFilterInput], sortBy: PrintJobSortingInput, before: String, after: String, first: Int, last: Int): PrintJobCountableConnection!
+}

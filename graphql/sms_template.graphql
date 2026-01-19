@@ -1,0 +1,44 @@
+type SMSTemplate implements BaseDocType {
+  doctype: String
+  name: String
+  owner: User!
+  creation: String
+  modified: String
+  modified_by: User!
+  docstatus: Int
+  idx: Int
+  owner__name: String!
+  modified_by__name: String!
+  parent__name: String
+  template_key: String!
+  language: String!
+  body: String!
+  is_active: Int
+}
+
+enum SMSTemplateSortField {
+  NAME
+  CREATION
+  MODIFIED
+}
+
+input SMSTemplateSortingInput {
+  direction: SortDirection!
+  field: SMSTemplateSortField!
+}
+
+type SMSTemplateCountableEdge {
+  cursor: String!
+  node: SMSTemplate!
+}
+
+type SMSTemplateCountableConnection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [SMSTemplateCountableEdge!]!
+}
+
+extend type Query {
+  SMSTemplate(name: String!): SMSTemplate!
+  SMSTemplates(filter: [DBFilterInput], sortBy: SMSTemplateSortingInput, before: String, after: String, first: Int, last: Int): SMSTemplateCountableConnection!
+}

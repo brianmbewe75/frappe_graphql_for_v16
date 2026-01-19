@@ -1,0 +1,51 @@
+type SMSOutboundLog implements BaseDocType {
+  doctype: String
+  name: String
+  owner: User!
+  creation: String
+  modified: String
+  modified_by: User!
+  docstatus: Int
+  idx: Int
+  owner__name: String!
+  modified_by__name: String!
+  parent__name: String
+  timestamp: String
+  to_number: String
+  from_number: String
+  language: String
+  brand: String
+  event_code: String
+  template_key: String
+  body: String
+  reference_doctype: String
+  reference_name: String
+  provider_response_json: String
+}
+
+enum SMSOutboundLogSortField {
+  NAME
+  CREATION
+  MODIFIED
+}
+
+input SMSOutboundLogSortingInput {
+  direction: SortDirection!
+  field: SMSOutboundLogSortField!
+}
+
+type SMSOutboundLogCountableEdge {
+  cursor: String!
+  node: SMSOutboundLog!
+}
+
+type SMSOutboundLogCountableConnection {
+  pageInfo: PageInfo!
+  totalCount: Int
+  edges: [SMSOutboundLogCountableEdge!]!
+}
+
+extend type Query {
+  SMSOutboundLog(name: String!): SMSOutboundLog!
+  SMSOutboundLogs(filter: [DBFilterInput], sortBy: SMSOutboundLogSortingInput, before: String, after: String, first: Int, last: Int): SMSOutboundLogCountableConnection!
+}
