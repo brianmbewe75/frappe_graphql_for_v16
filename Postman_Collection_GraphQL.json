@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "graphql-test-collection",
+		"name": "GraphQL API Testing - Animals, Cars, Fruits",
+		"description": "Test GraphQL endpoint with custom DocTypes: Animals, Cars, and Fruits",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Introspection Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query IntrospectionQuery { __schema { types { name } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get GraphQL schema types"
+			}
+		},
+		{
+			"name": "2. Query All Animals",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Animals { edges { node { name animal_name animal_type } } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get all animals"
+			}
+		},
+		{
+			"name": "3. Query All Cars",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Cars { edges { node { name car_name brand } } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get all cars"
+			}
+		},
+		{
+			"name": "4. Query All Fruits",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Fruits { edges { node { name fruit_name color } } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get all fruits"
+			}
+		},
+		{
+			"name": "5. Query Single Animal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Animal(name: \\\"Lion\\\") { name animal_name animal_type } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get a single animal by name"
+			}
+		},
+		{
+			"name": "6. Query Single Car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Car(name: \\\"Toyota Camry\\\") { name car_name brand } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get a single car by name"
+			}
+		},
+		{
+			"name": "7. Query Single Fruit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Fruit(name: \\\"Apple\\\") { name fruit_name color } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Get a single fruit by name"
+			}
+		},
+		{
+			"name": "8. Combined Query - All Three",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Animals { edges { node { name animal_name animal_type } } } Cars { edges { node { name car_name brand } } } Fruits { edges { node { name fruit_name color } } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Query all three DocTypes in one request - demonstrates GraphQL power!"
+			}
+		},
+		{
+			"name": "9. Filter Animals by Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Animals(filter: { animal_type: { eq: \\\"Wild\\\" } }) { edges { node { name animal_name animal_type } } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Filter animals by type"
+			}
+		},
+		{
+			"name": "10. Query with Selected Fields Only",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"query { Animals { edges { node { animal_name } } } Cars { edges { node { car_name } } } Fruits { edges { node { fruit_name } } } }\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/method/frappe_graphql.api.execute_gql_query",
+					"host": ["{{base_url}}"],
+					"path": ["api", "method", "frappe_graphql.api.execute_gql_query"]
+				},
+				"description": "Query only specific fields - GraphQL allows you to request exactly what you need"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

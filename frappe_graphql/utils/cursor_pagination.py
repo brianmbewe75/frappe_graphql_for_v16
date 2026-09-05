@@ -127,7 +127,7 @@ class CursorPaginator(object):
 
         return frappe.get_list(
             doctype,
-            fields=["COUNT(*) as total_count"],
+            fields=[{"COUNT": "*", "as": "total_count"}],
             filters=filters
         )[0].total_count
 

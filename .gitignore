@@ -4,3 +4,5 @@
 *.swp
 tags
 frappe_graphql/docs/current
+__pycache__/
+*.pyc

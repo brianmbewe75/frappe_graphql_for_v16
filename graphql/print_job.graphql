@@ -5,11 +5,14 @@ type PrintJob implements BaseDocType {
   creation: String
   modified: String
   modified_by: User!
+  parent: BaseDocType
+  parent__name: String
+  parentfield: String
+  parenttype: String
   docstatus: Int
   idx: Int
   owner__name: String!
   modified_by__name: String!
-  parent__name: String
   naming_series: String!
   sales_order: SalesOrder
   sales_order__name: String

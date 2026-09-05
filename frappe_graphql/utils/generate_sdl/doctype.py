@@ -43,7 +43,7 @@ def get_basic_doctype_sdl(meta: Meta, options: dict, generated_enums=None):
     dt = format_doctype(meta.name)
     sdl = f"type {dt} implements BaseDocType {{"
 
-    defined_fieldnames = [] + list(default_fields)
+    defined_fieldnames = [] + list(default_fields) + ["parent", "parentfield", "parenttype"]
 
     for field in default_fields:
         if field in ("idx", "docstatus"):
@@ -57,7 +57,10 @@ def get_basic_doctype_sdl(meta: Meta, options: dict, generated_enums=None):
         sdl += f"\n  {field}: {fieldtype}"
     sdl += "\n  owner__name: String!"
     sdl += "\n  modified_by__name: String!"
+    sdl += "\n  parent: BaseDocType"
     sdl += "\n  parent__name: String"
+    sdl += "\n  parentfield: String"
+    sdl += "\n  parenttype: String"
 
     for field in meta.fields:
         if field.fieldtype in display_fieldtypes:

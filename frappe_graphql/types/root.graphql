@@ -1,5 +1,6 @@
 scalar Upload
 scalar Password
+scalar JSON
 
 schema {
 	query: Query

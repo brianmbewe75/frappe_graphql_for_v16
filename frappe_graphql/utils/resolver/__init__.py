@@ -17,7 +17,7 @@ from .utils import get_singular_doctype
 def setup_default_resolvers(schema: GraphQLSchema):
     setup_root_query_resolvers(schema=schema)
 
-    doctype_resolver_processors = frappe.get_hooks("doctype_resolver_processors")
+    doctype_resolver_processors = frappe.get_hooks("doctype_resolver_processors") or []
 
     # Setup custom resolvers for DocTypes
     for type_name, gql_type in schema.type_map.items():

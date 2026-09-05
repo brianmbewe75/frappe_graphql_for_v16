@@ -13,7 +13,7 @@ app_email = "info@leam.ae"
 app_license = "MIT"
 
 graphql_sdl_dir = [
-    "./frappe_graphql/frappe_graphql/frappe_graphql/types"
+    "./frappe_graphql/frappe_graphql/types"
 ]
 
 scheduler_events = {
@@ -24,18 +24,18 @@ scheduler_events = {
 
 graphql_schema_processors = [
     # Queries
-    "frappe_graphql.frappe_graphql.queries.ping.bind",
+    "frappe_graphql.queries.ping.bind",
 
     # Mutations
-    "frappe_graphql.frappe_graphql.mutations.set_value.bind",
-    "frappe_graphql.frappe_graphql.mutations.save_doc.bind",
-    "frappe_graphql.frappe_graphql.mutations.delete_doc.bind",
+    "frappe_graphql.mutations.set_value.bind",
+    "frappe_graphql.mutations.save_doc.bind",
+    "frappe_graphql.mutations.delete_doc.bind",
 
-    "frappe_graphql.frappe_graphql.mutations.upload_file.bind",
-    "frappe_graphql.frappe_graphql.mutations.subscription_keepalive.bind",
+    "frappe_graphql.mutations.upload_file.bind",
+    "frappe_graphql.mutations.subscription_keepalive.bind",
 
     # Subscriptions
-    "frappe_graphql.frappe_graphql.subscription.doc_events.bind",
+    "frappe_graphql.subscription.doc_events.bind",
 ]
 
 graphql_middlewares = ["frappe_graphql.utils.middlewares.disable_introspection_queries.disable_introspection_queries"]
@@ -43,7 +43,7 @@ graphql_middlewares = ["frappe_graphql.utils.middlewares.disable_introspection_q
 doc_events = {
     "*": {
         # Doc Events Subscription
-        "on_change": "frappe_graphql.frappe_graphql.subscription.doc_events.on_change"
+        "on_change": "frappe_graphql.subscription.doc_events.on_change"
     }
 }
 
